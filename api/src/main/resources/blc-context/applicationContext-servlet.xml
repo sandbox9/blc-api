@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.2.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+    
+    <!-- Scan Broadleaf defined web utility classes -->
+    <!--  context:component-scan base-package="org.broadleafcommerce.cms.web"/ -->
+    <context:component-scan base-package="org.broadleafcommerce.common.web"/>
+    <context:component-scan base-package="org.broadleafcommerce.profile.web.controller"/>
+    <context:component-scan base-package="org.broadleafcommerce.profile.web.core.service.login"/>
+
+    <!-- Turn on AOP annotations (required by Broadleaf) -->
+    <aop:config/>
+    
+    <!-- Allow annotation driven controllers -->
+    <mvc:annotation-driven />
+
+    <!-- Disable caching for any non-resource. This prevents the header from becoming stagnant -->
+    <mvc:interceptors>
+        <bean id="webContentInterceptor" class="org.broadleafcommerce.core.web.interceptor.NonResourceWebContentInterceptor">
+            <property name="cacheSeconds" value="0"/>
+            <property name="useExpiresHeader" value="true"/>
+            <property name="useCacheControlHeader" value="true"/>
+            <property name="useCacheControlNoStore" value="true"/>
+        </bean>
+        <!-- Interceptor for blLocalCode-->
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="blLocaleCode"/>
+        </bean>
+    </mvc:interceptors>
+
+    <!-- Default locale set -->
+    <bean id="localeResolver" class="org.broadleafcommerce.common.web.BroadleafCookieLocaleResolver" />
+    
+</beans>
