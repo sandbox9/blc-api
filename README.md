@@ -1,3 +1,7 @@
+
+## 이 프로젝트는?
+BLC API를 테스트 하기 위해 생성한 프로젝트로 기존 BLC 프로젝트에 API 웹 모듈(API 모듈)을 하나 추가함  
+
 ## The New Broadleaf Commerce Demo Site
 
 This Maven project is meant to be used as a solid started project for any [Broadleaf Commerce](http://www.broadleafcommerce.org) application. It has many sensible defaults set up along with examples of how a fully functioning eCommerce site based on Broadleaf might work.
