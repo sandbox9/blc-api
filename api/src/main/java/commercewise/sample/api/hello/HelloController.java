@@ -1,4 +1,4 @@
-package commercewise.sample.api.config;
+package commercewise.sample.api.hello;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
